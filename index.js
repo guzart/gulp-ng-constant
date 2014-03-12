@@ -7,7 +7,6 @@ var gutil = require('gulp-util');
 var through = require('through2');
 
 var _ = require('lodash');
-var js2coffee = require('js2coffee');
 
 var TEMPLATE_PATH = path.join(__dirname, 'tpls', 'constant.tpl.ejs');
 var DEFAULT_WRAP_PATH = path.join(__dirname, 'tpls', 'default-wrapper.tpl.ejs');
@@ -21,7 +20,6 @@ var defaults = {
     space: '\t',
     deps: [],
     wrap: false,
-    coffee: false,
     templatePath: TEMPLATE_PATH
 };
 
@@ -66,9 +64,6 @@ function ngConstantPlugin(opts) {
 
             // Handle wrapping
             result = wrap(result, options);
-
-            // Convert to coffeescript
-            if (module.coffee) { result = js2coffee.build(result); }
 
             file.path = gutil.replaceExtension(file.path, '.js');
             file.contents = new Buffer(result);

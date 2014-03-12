@@ -30,7 +30,6 @@ _**gulpfile.js**_
           space: '\t',
           deps: [],
           wrap: 'amd',
-          coffee: false
           templatePath: TEMPLATE_PATH
         }))
         // Writes config.js to dist/ folder
@@ -87,15 +86,6 @@ A string who will wrap the result of file, use the
 module content.
 A string with 'amd' that wraps the module as an AMD module, 
 compatible with RequireJS
-
-#### options.coffee
-
-Type: `boolean`  
-Default: `false`  
-_optional_
-
-A boolean to toggle coffeescript output instead of javascript,
-using js2coffee.
 
 #### options.templatePath
 

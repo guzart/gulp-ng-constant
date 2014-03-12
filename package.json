@@ -20,7 +20,6 @@
   "homepage": "https://github.com/guzart/gulp-ng-constant",
   "dependencies": {
     "lodash": "^2.4.1",
-    "js2coffee": "^0.2.7",
     "gulp-util": "^2.2.14",
     "through2": "^0.4.1"
   }
