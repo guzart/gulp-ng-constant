@@ -10,7 +10,8 @@
   "keywords": [
     "gulp",
     "angularjs",
-    "constant"
+    "constant",
+    "gulpplugin"
   ],
   "author": "Arturo Guzman",
   "license": "MIT",
