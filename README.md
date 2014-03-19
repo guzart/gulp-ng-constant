@@ -87,6 +87,20 @@ module content.
 A string with 'amd' that wraps the module as an AMD module, 
 compatible with RequireJS
 
+#### options.template
+
+Type: `string`  
+Default: _content of [tpls/constant.tpl.ejs](https://github.com/guzart/gulp-ng-constant/blob/master/tpls/constant.tpl.ejs)_  
+_optional_
+
+EJS template to apply when creating the output configuration file. The following variables
+are passed to the template during render:
+
+  * `moduleName`: the module name (`string`)
+  * `deps`: the module dependencies (`array<string>`)
+  * `constants`: the module constants (`array<contantObj>`)
+    * where a `constantObj` is an object with a `name` and a `value`, both `strings`.
+
 #### options.templatePath
 
 Type: `string`  

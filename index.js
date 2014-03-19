@@ -1,4 +1,3 @@
-/* jshint latedef: false */
 'use strict';
 
 var fs = require('fs');
@@ -20,13 +19,14 @@ var defaults = {
     space: '\t',
     deps: [],
     wrap: false,
+    template: undefined,
     templatePath: TEMPLATE_PATH
 };
 
 function ngConstantPlugin(opts) {
 
     var options = _.merge({}, defaults, opts);
-    var template = readFile(options.templatePath);
+    var template = options.template || readFile(options.templatePath);
 
     return through.obj(objectStream);
 
