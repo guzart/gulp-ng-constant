@@ -77,7 +77,7 @@ Overridable from configuration file.
 
 Type: `boolean|string`  
 Default: `false`  
-Available: `['amd', 'commonjs']`
+Available: `['amd', 'commonjs']`  
 _optional_
 
 A boolean to active or deactive the automatic wrapping.
