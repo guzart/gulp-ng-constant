@@ -3,17 +3,29 @@
 var ngConstant = require('../index');
 
 describe('ngConstant.getConstants', function () {
+    it('returns an array with the constants key and json string value', function () {
+        var data = { constants: { hello: { foo: 'bar' } } };
+        var result = ngConstant.getConstants(data);
+        expect(result[0]).toEqual({name: 'hello', value: '{"foo":"bar"}'});
+    });
+
     it('extends the data.constants with the options.constants', function () {
         var data = { constants: { hello: 'andrew' } };
         var opts = { constants: { hello: 'world' } };
         var result = ngConstant.getConstants(data, opts);
-        expect(result).toEqual([{ name: 'hello', value: '"world"' }]);
+        expect(result[0]).toEqual({ name: 'hello', value: '"world"' });
     });
 
-    it('returns an array with the constants key and json string value', function () {
-        var data = { constants: { hello: { foo: 'bar' } } };
+    it('uses the data object if data.constants is not available', function () {
+        var data = { hello: 'andrew' };
         var result = ngConstant.getConstants(data);
-        expect(result).toEqual([{name: 'hello', value: '{"foo":"bar"}'}]);
+        expect(result[0]).toEqual({ name: 'hello', value: '"andrew"' });
+    });
+
+    it('accepts a JSON string as constants from the options', function () {
+        var opts = { constants: JSON.stringify({ hello: 'world' }) };
+        var result = ngConstant.getConstants({}, opts);
+        expect(result[0]).toEqual({ name: 'hello', value: '"world"' });
     });
 
     it('stringifies the value with the given option.space', function () {

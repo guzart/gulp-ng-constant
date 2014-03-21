@@ -41,17 +41,15 @@ function ngConstantPlugin(opts) {
         try {
             var data = file.isNull() ? {} : JSON.parse(file.contents);
 
-            // Get constants or overrides
-            var constants = getConstants(data, options);
-
             // Create the module string
             var result = _.template(template, {
-                moduleName: data.name || options.name,
-                deps:       data.deps || options.deps,
-                constants:  constants
+                moduleName: options.name || data.name,
+                deps:       options.deps || data.deps || [],
+                constants:  getConstants(data, options)
             });
 
             // Handle wrapping
+            if (!options.wrap) { options.wrap = data.wrap; }
             result = wrap(result, options);
 
             file.path = gutil.replaceExtension(file.path, '.js');
@@ -68,7 +66,12 @@ function ngConstantPlugin(opts) {
 
 function getConstants(data, options) {
     var opts = options || {};
-    var input = _.extend({}, data.constants, opts.constants);
+    if (typeof opts.constants === 'string') {
+        opts.constants = JSON.parse(opts.constants);
+    }
+
+    var dataCnst = data.constants || data;
+    var input = _.extend({}, dataCnst, opts.constants);
     var constants =  _.map(input, function (value, name) {
         return {
             name: name,
