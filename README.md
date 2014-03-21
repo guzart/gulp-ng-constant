@@ -19,7 +19,9 @@ Based of <a href="https://github.com/werk85/grunt-ng-constant">grunt-ng-constant
 </table>
 
 ## Usage
-  
+
+### configuration in `gulpfile.js`
+
 _**gulpfile.js**_
 
     var ngConstant = require('gulp-ng-constant');
@@ -27,10 +29,10 @@ _**gulpfile.js**_
     gulp.task('config', function () {
       gulp.src('app/config.json')
         .pipe(ngConstant({
-          space: '\t',
-          deps: [],
+          name: 'my.module.config',
+          deps: ['ngAnimate'],
+          constants: { myPropCnt: 'hola!' },
           wrap: 'amd',
-          templatePath: TEMPLATE_PATH
         }))
         // Writes config.js to dist/ folder
         .pipe(gulp.dest('dist'));
@@ -39,39 +41,84 @@ _**gulpfile.js**_
 _**app/config.json**_
 
     {
+      "myFirstCnt": true,
+      "mySecondCnt": { "hello": "world" }
+    }
+
+_**dist/config.js**_ _(output)_
+
+    define(["require", "exports"], function(require, exports) {
+      return angular.module("my.module.config", ["ngAnimate"])
+        .constant("myFirstCnt", true)
+        .constant("mySecondCnt", { "hello": "world" })
+        .constant("myPropCnt", "hola!");
+    });
+
+### configuration in `config.json`
+
+_**gulpfile.js**_
+
+    var ngConstant = require('gulp-ng-constant');
+
+    gulp.task('config', function () {
+      gulp.src('app/config.json')
+        .pipe(ngConstant())
+        // Writes config.js to dist/ folder
+        .pipe(gulp.dest('dist'));
+    });
+
+
+_**app/config.json**_
+
+    {
       "name": "my.module.config",
       "deps": ["ngAnimate"],
+      "wrap": "commonjs",
       "constants": {
         "myFirstCnt": true,
         "mySecondCnt": { "hello": "world" }
       }
     }
 
-_**dist/config.js**_
+_**dist/config.js**_ _(output)_
 
-    define(["require", "exports"], function(require, exports) {
-      return angular.module("my.module.config", ["ngAnimate"])
+    module.exports = angular.module("my.module.config", ["ngAnimate"])
         .constant("myFirstCnt", true)
-        .constant("mySecondCnt", { "hello": "world" });
-    });
+        .constant("mySecondCnt", { "hello": "world" })
+        .constant("myPropCnt", "hola!");
 
+### Options
 
-#### options.space
+#### options.name
 
 Type: `string`  
-Default: `'\t'`  
-_optional_
+Default: `undefined`  
+Overrides: `json.name`  
 
-A string that defines how the JSON.stringify method will prettify your code.
+The module name.
+This property will override any `name` property defined in the input `json` file.
+
+#### options.constants
+
+Type: `Object | string`  
+Default: `undefined`  
+Exends/Overrides: `json.constants`  
+
+Constants to defined in the module.
+Can be a `JSON` string or an `Object`.
+This property extends the one defined in the input `json` file. If there are
+properties with the same name, this properties will override the ones from the
+input `json` file.
 
 #### options.deps
 
 Type: `array<string>`  
 Default: `[]`  
+Overrides: `json.deps`  
 _optional_
 
 An array that specifies the default dependencies a module should have.
-Overridable from configuration file.
+This property will override any `deps` property defined in the input `json` file.
 
 #### options.wrap
 
@@ -86,6 +133,14 @@ A string who will wrap the result of file, use the
 module content.
 A string with 'amd' that wraps the module as an AMD module, 
 compatible with RequireJS
+
+#### options.space
+
+Type: `string`  
+Default: `'\t'`  
+_optional_
+
+A string that defines how the JSON.stringify method will prettify your code.
 
 #### options.template
 
