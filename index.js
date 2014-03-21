@@ -13,8 +13,6 @@ var AMD_WRAP_PATH = path.join(__dirname, 'tpls', 'amd-wrapper.tpl.ejs');
 var COMMONJS_WRAP_PATH = path.join(__dirname, 'tpls', 'commonjs-wrapper.tpl.ejs');
 var defaultWrapper, amdWrapper, commonjsWrapper;
 
-module.exports = ngConstantPlugin;
-
 var defaults = {
     space: '\t',
     deps: [],
@@ -34,32 +32,23 @@ function ngConstantPlugin(opts) {
         /* jshint validthis: true */
 
         var _this = this;
-
-        if (file.isNull()) {
-            this.push(file);
-            return cb();
-        }
-
+        
         if (file.isStream()) {
             _this.emit('error', pluginError('Streaming not supported'));
             return cb();
         }
 
         try {
+            var data = file.isNull() ? {} : JSON.parse(file.contents);
+
             // Get constants or overrides
-            var data = JSON.parse(file.contents);
-            var constants = _.map(data.constants, function (value, name) {
-                return {
-                    name: name,
-                    value: stringify(value, options.space)
-                };
-            });
+            var constants = getConstants(data, options);
 
             // Create the module string
             var result = _.template(template, {
-                moduleName: data.name,
-                deps: data.deps || options.deps,
-                constants: constants
+                moduleName: data.name || options.name,
+                deps:       data.deps || options.deps,
+                constants:  constants
             });
 
             // Handle wrapping
@@ -75,6 +64,19 @@ function ngConstantPlugin(opts) {
 
         cb();
     }
+}
+
+function getConstants(data, options) {
+    var opts = options || {};
+    var input = _.extend({}, data.constants, opts.constants);
+    var constants =  _.map(input, function (value, name) {
+        return {
+            name: name,
+            value: stringify(value, opts.space)
+        };
+    });
+
+    return constants;
 }
 
 function pluginError(msg) {
@@ -104,3 +106,9 @@ function stringify(value, space) {
     return _.isUndefined(value) ? 'undefined' : JSON.stringify(value, null, space);
 }
 
+_.extend(ngConstantPlugin, {
+    getConstants: getConstants,
+    wrap: wrap
+});
+
+module.exports = ngConstantPlugin;
