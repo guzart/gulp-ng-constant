@@ -44,7 +44,7 @@ function ngConstantPlugin(opts) {
             // Create the module string
             var result = _.template(template, {
                 moduleName: options.name || data.name,
-                deps:       options.deps || data.deps || [],
+                deps:       data.deps || options.deps,
                 constants:  getConstants(data, options)
             });
 
