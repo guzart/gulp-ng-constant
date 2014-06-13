@@ -15,7 +15,7 @@ var defaultWrapper, amdWrapper, commonjsWrapper;
 
 var defaults = {
     space: '\t',
-    deps: [],
+    deps: null,
     wrap: false,
     template: undefined,
     templatePath: TEMPLATE_PATH
@@ -32,7 +32,7 @@ function ngConstantPlugin(opts) {
         /* jshint validthis: true */
 
         var _this = this;
-        
+
         if (file.isStream()) {
             _this.emit('error', pluginError('Streaming not supported'));
             return cb();
@@ -44,7 +44,7 @@ function ngConstantPlugin(opts) {
             // Create the module string
             var result = _.template(template, {
                 moduleName: options.name || data.name,
-                deps:       data.deps || options.deps,
+                deps:       options.deps || data.deps || [],
                 constants:  getConstants(data, options)
             });
 
