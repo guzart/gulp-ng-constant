@@ -52,7 +52,7 @@ function ngConstantPlugin(opts) {
             if (!options.wrap) { options.wrap = data.wrap; }
             result = wrap(result, options);
 
-            file.path = gutil.replaceExtension(file.path, '.js');
+            file.path = getFilePath(file.path, options);
             file.contents = new Buffer(result);
             _this.push(file);
         } catch (err) {
@@ -80,6 +80,14 @@ function getConstants(data, options) {
     });
 
     return constants;
+}
+
+function getFilePath(filePath, options) {
+    if (!options.dest) {
+        return gutil.replaceExtension(filePath, '.js');
+    }
+
+    return path.join(path.dirname(filePath), options.dest);
 }
 
 function pluginError(msg) {
@@ -111,6 +119,7 @@ function stringify(value, space) {
 
 _.extend(ngConstantPlugin, {
     getConstants: getConstants,
+    getFilePath: getFilePath,
     wrap: wrap
 });
 
