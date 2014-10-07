@@ -1,10 +1,12 @@
 gulp-ng-constant
 ================
 
+[![Build Status](https://travis-ci.org/guzart/gulp-ng-constant.svg)](https://travis-ci.org/guzart/gulp-ng-constant)
+
 ## Information
 
 <table>
-<tr> 
+<tr>
 <td>Package</td><td>gulp-ng-constant</td>
 </tr>
 <tr>
@@ -139,7 +141,7 @@ A boolean to active or deactive the automatic wrapping.
 A string who will wrap the result of file, use the
 `<%= __ngModule %>` variable to indicate where to put the generated
 module content.
-A string with 'amd' that wraps the module as an AMD module, 
+A string with 'amd' that wraps the module as an AMD module,
 compatible with RequireJS
 
 #### options.space
