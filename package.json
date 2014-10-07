@@ -19,9 +19,15 @@
     "url": "https://github.com/guzart/gulp-ng-constant/issues"
   },
   "homepage": "https://github.com/guzart/gulp-ng-constant",
+  "scripts": {
+    "test": "node_modules/jasmine-node/bin/jasmine-node spec/gulpNgConstantSpec.js"
+  },
   "dependencies": {
     "lodash": "^2.4.1",
     "gulp-util": "^2.2.14",
     "through2": "^0.4.1"
+  },
+  "devDependencies": {
+    "jasmine-node": "^1.14.5"
   }
 }
