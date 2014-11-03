@@ -25,8 +25,13 @@ function ngConstantPlugin(opts) {
 
     var options = _.merge({}, defaults, opts);
     var template = options.template || readFile(options.templatePath);
+    var stream = through.obj(objectStream);
 
-    return through.obj(objectStream);
+    if (options.noFile) {
+      stream.end(new gutil.File({ path: 'constants.json' }));
+    }
+
+    return stream;
 
     function objectStream(file, enc, cb) {
         /* jshint validthis: true */
