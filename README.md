@@ -127,7 +127,9 @@ Default: `[]`
 Overrides: `json.deps`  
 _optional_
 
-An array that specifies the default dependencies a module should have.
+An array that specifies the default dependencies a module should have. When your
+module should not have any modules, so you can append the constants to an
+already existing one, you can set deps to false.
 This property will override any `deps` property defined in the input `json` file.
 
 #### options.wrap
