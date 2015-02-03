@@ -26,68 +26,79 @@ Based of <a href="https://github.com/werk85/grunt-ng-constant">grunt-ng-constant
 
 _**gulpfile.js**_
 
-    var ngConstant = require('gulp-ng-constant');
+```javascript
+var ngConstant = require('gulp-ng-constant');
 
-    gulp.task('config', function () {
-      gulp.src('app/config.json')
-        .pipe(ngConstant({
-          name: 'my.module.config',
-          deps: ['ngAnimate'],
-          constants: { myPropCnt: 'hola!' },
-          wrap: 'amd',
-        }))
-        // Writes config.js to dist/ folder
-        .pipe(gulp.dest('dist'));
-    });
+gulp.task('config', function () {
+  gulp.src('app/config.json')
+    .pipe(ngConstant({
+      name: 'my.module.config',
+      deps: ['ngAnimate'],
+      constants: { myPropCnt: 'hola!' },
+      wrap: 'amd',
+    }))
+    // Writes config.js to dist/ folder
+    .pipe(gulp.dest('dist'));
+});
+```
 
 _**app/config.json**_
-
-    {
-      "myFirstCnt": true,
-      "mySecondCnt": { "hello": "world" }
-    }
+```json
+{
+  "myFirstCnt": true,
+  "mySecondCnt": { "hello": "world" }
+}
+```
 
 _**dist/config.js**_ _(output)_
 
-    define(["require", "exports"], function(require, exports) {
-      return angular.module("my.module.config", ["ngAnimate"])
-        .constant("myFirstCnt", true)
-        .constant("mySecondCnt", { "hello": "world" })
-        .constant("myPropCnt", "hola!");
-    });
+```javascript
+define(["require", "exports"], function(require, exports) {
+  return angular.module("my.module.config", ["ngAnimate"])
+    .constant("myFirstCnt", true)
+    .constant("mySecondCnt", { "hello": "world" })
+    .constant("myPropCnt", "hola!");
+});
+```
 
 ### configuration in `config.json`
 
 _**gulpfile.js**_
 
-    var ngConstant = require('gulp-ng-constant');
+```javascript
+var ngConstant = require('gulp-ng-constant');
 
-    gulp.task('config', function () {
-      gulp.src('app/config.json')
-        .pipe(ngConstant())
-        // Writes config.js to dist/ folder
-        .pipe(gulp.dest('dist'));
-    });
+gulp.task('config', function () {
+  gulp.src('app/config.json')
+    .pipe(ngConstant())
+    // Writes config.js to dist/ folder
+    .pipe(gulp.dest('dist'));
+});
+```
 
 
 _**app/config.json**_
 
-    {
-      "name": "my.module.config",
-      "deps": ["ngAnimate"],
-      "wrap": "commonjs",
-      "constants": {
-        "myFirstCnt": true,
-        "mySecondCnt": { "hello": "world" }
-      }
-    }
+```json
+{
+  "name": "my.module.config",
+  "deps": ["ngAnimate"],
+  "wrap": "commonjs",
+  "constants": {
+    "myFirstCnt": true,
+    "mySecondCnt": { "hello": "world" }
+  }
+}
+```
 
 _**dist/config.js**_ _(output)_
 
-    module.exports = angular.module("my.module.config", ["ngAnimate"])
-        .constant("myFirstCnt", true)
-        .constant("mySecondCnt", { "hello": "world" })
-        .constant("myPropCnt", "hola!");
+```javascript
+module.exports = angular.module("my.module.config", ["ngAnimate"])
+    .constant("myFirstCnt", true)
+    .constant("mySecondCnt", { "hello": "world" })
+    .constant("myPropCnt", "hola!");
+```
 
 ### Options
 
@@ -108,6 +119,15 @@ _optional_
 
 ~~The path where the generated constant module should be saved.~~  
 **DEPRECATED**: To change the vinyl file name use a plugin such as [gulp-rename](https://www.npmjs.com/package/gulp-rename).
+
+#### options.stream
+
+Type: `boolean`  
+Default: `false`  
+_optional_
+
+If true it will return a gulp stream, which can then be piped other gulp plugins
+([Example](#stream-example)).
 
 #### options.constants
 
@@ -174,3 +194,50 @@ Default: `'tpls/constant.tpl.ejs'`
 _optional_
 
 Location of a custom template file for creating the output configuration file. Defaults to the provided constants template file if none provided.
+
+## Examples
+
+### Multiple Environments
+
+_**config.json**_
+```json
+{
+  "development": { "greeting": "Sup!" },
+  "production": { "greeting": "Hello" }
+}
+```
+
+_**gulpfile.js**_
+```javascript
+var gulp = require('gulp');
+var ngConstant = require('gulp-ng-constant');
+
+gulp.task('constants', function () {
+  var myConfig = require('./config.json');
+  var envConfig = myConfig[process.env];
+  return ngConstant({
+      constants: envConfig,
+      stream: true
+    })
+    .pipe(gulp.dest('dist'));
+});
+
+```
+
+### Stream Example
+
+```javascript
+var gulp = require('gulp');
+var ngConstant = require('gulp-ng-constant');
+var uglify = require('gulp-uglify');
+
+gulp.task('constants', function () {
+  var constants = { hello: 'world' };
+  return ngConstant({
+      constants: constants,
+      stream: true
+    })
+    .pipe(uglify())  
+    .pipe(gulp.dest('dist'));
+});
+```
