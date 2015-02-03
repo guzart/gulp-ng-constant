@@ -2,12 +2,23 @@
 
 var ngConstant = require('../index');
 var _ = require('lodash');
+var gutil = require('gulp-util');
+var through = require('through2');
 
 describe('ngConstant', function () {
 
     describe('name', function () {
-        it ('creates a modules with "ngConstants" name by default', function (done) {
-            evalNgConstant({name: undefined}, function (_, output) {
+        it ('uses the streamed file name by default', function (done) {
+            getStream({path: 'myConstantsFile.json'})
+            .pipe(ngConstant())
+            .on('data', function (file) {
+                expect(file.contents.toString()).toContain('module("myConstantsFile"');
+                done();
+            });
+        });
+
+        it ('creates a modules with "ngConstants" name by default for new streams', function (done) {
+            evalNgConstant({name: undefined, stream: true}, function (_, output) {
                 expect(output).toContain('module("ngConstants"');
                 done();
             });
@@ -103,6 +114,14 @@ describe('ngConstant.getFilePath', function() {
         expect(ngConstant.getFilePath('/foo/bar/foo.js', { dest: 'foo.js' })).toBe('/foo/bar/foo.js');
     });
 });
+
+function getStream(fileOptions) {
+    var defaults = {path: 'constants.json'};
+    var file = new gutil.File(_.merge(defaults, fileOptions));
+    var stream = through.obj(gutil.noop());
+    stream.end(file);
+    return stream;
+}
 
 function evalNgConstant(options, callback) {
     var defaults = {stream: true, constants: {greeting: 'hello' }};

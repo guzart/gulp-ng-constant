@@ -147,7 +147,7 @@ Type: `boolean`
 Default: `false`  
 _optional_
 
-If true it will return a gulp stream, which can then be piped other gulp plugins
+If true it returns a new gulp stream, which can then be piped other gulp plugins
 ([Example](#stream)).
 
 #### options.constants

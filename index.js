@@ -14,7 +14,6 @@ var COMMONJS_WRAP_PATH = path.join(__dirname, 'tpls', 'commonjs-wrapper.tpl.ejs'
 var defaultWrapper, amdWrapper, commonjsWrapper;
 
 var defaults = {
-    name: 'ngConstants',
     space: '\t',
     deps: null,
     stream: false,
@@ -30,7 +29,7 @@ function ngConstantPlugin(opts) {
     var stream = through.obj(objectStream);
 
     if (options.stream) {
-      stream.end(new gutil.File({ path: 'constants.json' }));
+      stream.end(new gutil.File({ path: 'ngConstants.json' }));
     }
 
     return stream;
@@ -50,7 +49,7 @@ function ngConstantPlugin(opts) {
 
             // Create the module string
             var result = _.template(template, {
-                moduleName: options.name || data.name,
+                moduleName: getModuleName(data, options, file),
                 deps:       getModuleDeps(data, options),
                 constants:  getConstants(data, options)
             });
@@ -69,6 +68,16 @@ function ngConstantPlugin(opts) {
 
         cb();
     }
+}
+
+function getModuleName(data, options, file) {
+    var name = options.name || data.name;
+    if (!name) {
+        var extension = path.extname(file.path);
+        name = path.basename(file.path, extension);
+    }
+
+    return name;
 }
 
 function getModuleDeps(data, options) {
