@@ -122,14 +122,12 @@ input `json` file.
 
 #### options.deps
 
-Type: `array<string>`  
+Type: `array<string>|boolean`  
 Default: `[]`  
 Overrides: `json.deps`  
 _optional_
 
-An array that specifies the default dependencies a module should have. When your
-module should not have any modules, so you can append the constants to an
-already existing one, you can set deps to false.
+An array that specifies the default dependencies a module should have. To add the constants to an existing module, you can set it to `false`.
 This property will override any `deps` property defined in the input `json` file.
 
 #### options.wrap
