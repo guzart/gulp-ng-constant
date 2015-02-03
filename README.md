@@ -125,12 +125,12 @@ module.exports = angular.module("my.module.config", ["ngAnimate"])
 #### options.name
 
 Type: `string`  
-Default: `ngConstants`  
+Default: `filename` or `"ngConstants"`  
 Overrides: `json.name`  
 _optional_
 
 The module name.
-This property will override any `name` property defined in the input `json` file.
+This property will override any `name` property defined in the input `json` file. The default name when used as a tranform stream (i.e. regular plugin) is the passed file name. When [options.stream](#optionsstream) is `true` the default name is `"ngConstants"`.
 
 #### ~~options.dest~~
 
