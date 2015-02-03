@@ -100,13 +100,14 @@ Overrides: `json.name`
 The module name.
 This property will override any `name` property defined in the input `json` file.
 
-#### options.dest
+#### ~~options.dest~~
 
-Type: `string`  
-Default: `undefined`
+~~Type: `string`~~  
+~~Default: `undefined`~~  
 _optional_
 
-The path where the generated constant module should be saved.
+~~The path where the generated constant module should be saved.~~  
+**DEPRECATED**: To change the vinyl file name use a plugin such as [gulp-rename](https://www.npmjs.com/package/gulp-rename).
 
 #### options.constants
 

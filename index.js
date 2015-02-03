@@ -100,6 +100,9 @@ function getFilePath(filePath, options) {
         return gutil.replaceExtension(filePath, '.js');
     }
 
+    var warningMessage = 'gulp-ng-constant - options.dest will be deprecated, instead use ' +
+                         'a plugin such as gulp-rename.';
+    console.warn(warningMessage);
     return path.join(path.dirname(filePath), options.dest);
 }
 
