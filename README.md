@@ -20,9 +20,29 @@ Based of <a href="https://github.com/werk85/grunt-ng-constant">grunt-ng-constant
 </tr>
 </table>
 
+## Index
+
+1. [Usage](#usage)
+  * [Configuration in gulpfile.js](#configuration-in-gulpfilejs)
+  * [Configuration in config.json](#configuration-in-configjson)
+1. [Options](#options)
+  * [name](#optionsname)
+  * [~~dest~~](#optionsdest)
+  * [stream](#optionsstream)
+  * [constants](#optionsconstants)
+  * [deps](#optionsdeps)
+  * [wrap](#optionswrap)
+  * [space](#optionsspace)
+  * [template](#optionstemplate)
+  * [templatePath](#optionstemplatepath)
+1. [Examples](#examples)
+  * [Multiple Environments](#multiple-environments)
+  * [Stream](#stream)
+1. [Special Thanks](#special-thanks)
+
 ## Usage
 
-### configuration in `gulpfile.js`
+### Configuration in `gulpfile.js`
 
 _**gulpfile.js**_
 
@@ -61,7 +81,7 @@ define(["require", "exports"], function(require, exports) {
 });
 ```
 
-### configuration in `config.json`
+### Configuration in `config.json`
 
 _**gulpfile.js**_
 
@@ -100,7 +120,7 @@ module.exports = angular.module("my.module.config", ["ngAnimate"])
     .constant("myPropCnt", "hola!");
 ```
 
-### Options
+## Options
 
 #### options.name
 
@@ -127,7 +147,7 @@ Default: `false`
 _optional_
 
 If true it will return a gulp stream, which can then be piped other gulp plugins
-([Example](#stream-example)).
+([Example](#stream)).
 
 #### options.constants
 
@@ -224,7 +244,7 @@ gulp.task('constants', function () {
 
 ```
 
-### Stream Example
+### Stream
 
 ```javascript
 var gulp = require('gulp');
@@ -241,3 +261,7 @@ gulp.task('constants', function () {
     .pipe(gulp.dest('dist'));
 });
 ```
+
+## Special Thanks
+
+@alexeygolev, @sabudaye, @ojacquemart, @lukehorvat, @rimian, @andidev
