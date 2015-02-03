@@ -44,7 +44,7 @@ function ngConstantPlugin(opts) {
             // Create the module string
             var result = _.template(template, {
                 moduleName: options.name || data.name,
-                deps:       isDepsFalse(options, data) ? false : options.deps || data.deps || [],
+                deps:       getModuleDeps(data, options),
                 constants:  getConstants(data, options)
             });
 
@@ -62,6 +62,14 @@ function ngConstantPlugin(opts) {
 
         cb();
     }
+}
+
+function getModuleDeps(data, options) {
+    if (options.deps === false || data.deps === false) {
+      return false;
+    }
+
+    return options.deps || data.deps || [];
 }
 
 function getConstants(data, options) {
@@ -115,14 +123,6 @@ function readFile(filepath) {
 
 function stringify(value, space) {
     return _.isUndefined(value) ? 'undefined' : JSON.stringify(value, null, space);
-}
-
-function isDepsFalse(options, data) {
-    if (options.deps === false || (!options.deps && data.deps === false)) {
-        return true;
-    } else {
-        return false;
-    }
 }
 
 _.extend(ngConstantPlugin, {
