@@ -125,8 +125,9 @@ module.exports = angular.module("my.module.config", ["ngAnimate"])
 #### options.name
 
 Type: `string`  
-Default: `undefined`  
+Default: `ngConstants`  
 Overrides: `json.name`  
+_optional_
 
 The module name.
 This property will override any `name` property defined in the input `json` file.

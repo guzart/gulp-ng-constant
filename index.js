@@ -14,8 +14,10 @@ var COMMONJS_WRAP_PATH = path.join(__dirname, 'tpls', 'commonjs-wrapper.tpl.ejs'
 var defaultWrapper, amdWrapper, commonjsWrapper;
 
 var defaults = {
+    name: 'ngConstants',
     space: '\t',
     deps: null,
+    stream: false,
     wrap: false,
     template: undefined,
     templatePath: TEMPLATE_PATH
