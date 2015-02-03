@@ -5,6 +5,9 @@ var _ = require('lodash');
 var gutil = require('gulp-util');
 var through = require('through2');
 
+// TODO: add custom matcher to test the modules name expect(output).toHaveModule('ngConstants') that uses regexp
+// TODO: consider adding a toString() property to the vinyl file (e.g. file.text)
+
 describe('ngConstant', function () {
 
     describe('name', function () {
