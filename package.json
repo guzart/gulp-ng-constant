@@ -21,7 +21,7 @@
   "homepage": "https://github.com/guzart/gulp-ng-constant",
   "scripts": {
     "test": "node_modules/jasmine-node/bin/jasmine-node spec/gulpNgConstantSpec.js"
-  },inde
+  },
   "dependencies": {
     "gulp-util": "^2.2.14",
     "js-yaml": "^3.2.7",
