@@ -1,6 +1,7 @@
 'use strict';
 
 var fs = require('fs');
+var yaml = require('js-yaml');
 var path = require('path');
 var gutil = require('gulp-util');
 var through = require('through2');
@@ -45,7 +46,7 @@ function ngConstantPlugin(opts) {
         }
 
         try {
-            var data = file.isNull() ? {} : JSON.parse(file.contents);
+            var data = file.isNull() ? {} : yaml.safeLoad(file.contents);
 
             // Create the module string
             var result = _.template(template, {
