@@ -10,6 +10,28 @@ var through = require('through2');
 
 describe('ngConstant', function () {
 
+    describe('file stream', function () {
+        it('load the constants from a YAML file', function (done) {
+            var contents = 'message: happy yaml';
+            getStream({path: 'constants.yml', contents: new Buffer(contents)})
+            .pipe(ngConstant())
+            .on('data', function (file) {
+                expect(file.contents.toString()).toContain('constant("message", "happy yaml")');
+                done();
+            });
+        });
+
+        it ('loads the constants from a JSON file', function (done) {
+            var contents = '{ "message": "valid JSON" }';
+            getStream({path: 'constants.json', contents: new Buffer(contents)})
+            .pipe(ngConstant())
+            .on('data', function (file) {
+                expect(file.contents.toString()).toContain('constant("message", "valid JSON")');
+                done();
+            });
+        });
+    });
+
     describe('name', function () {
         it ('uses the streamed file name by default', function (done) {
             getStream({path: 'myConstantsFile.json'})
