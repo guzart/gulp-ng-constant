@@ -38,6 +38,7 @@ Based of <a href="https://github.com/werk85/grunt-ng-constant">grunt-ng-constant
 1. [Examples](#examples)
   * [Multiple Environments](#multiple-environments)
   * [Stream](#stream)
+  * [YAML](#yaml)
 1. [Special Thanks](#special-thanks)
 
 ## Usage
@@ -263,6 +264,32 @@ gulp.task('constants', function () {
 });
 ```
 
+### YAML
+
+Just write your configuration in a YAML file and pipe it to the plugin.
+
+_**config.yml**_
+```yaml
+greeting: Merry Christmas!
+seasons:
+  - Winter
+  - Spring
+  - Summer
+  - Fall
+```
+
+_**gulpfile.js**_
+```javascript
+var gulp = require('gulp');
+var ngConstant = require('gulp-ng-constant');
+
+gulp.task('constants', function () {
+  gulp.src('app/config.yml')
+    .pipe(ngConstant())
+    .pipe(gulp.dest('dist'));
+});
+```
+
 ## Special Thanks
 
-@alexeygolev, @sabudaye, @ojacquemart, @lukehorvat, @rimian, @andidev
+@alexeygolev, @sabudaye, @ojacquemart, @lukehorvat, @rimian, @andidev, @dotDeeka
