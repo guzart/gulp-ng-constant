@@ -49,7 +49,7 @@ function ngConstantPlugin(opts) {
             var data = file.isNull() ? {} : yaml.safeLoad(file.contents);
 
             // Create the module string
-            var result = _.template(template, {
+            var result = _.template(template)({
                 moduleName: getModuleName(data, options, file),
                 deps:       getModuleDeps(data, options),
                 constants:  getConstants(data, options)
@@ -134,7 +134,7 @@ function wrap(input, options) {
         if (!commonjsWrapper) { commonjsWrapper = readFile(COMMONJS_WRAP_PATH); }
         wrapper = commonjsWrapper;
     }
-    return _.template(wrapper, _.merge({ '__ngModule': input }, options));
+    return _.template(wrapper)(_.merge({ '__ngModule': input }, options));
 }
 
 function readFile(filepath) {
