@@ -292,4 +292,4 @@ gulp.task('constants', function () {
 
 ## Special Thanks
 
-@alexeygolev, @sabudaye, @ojacquemart, @lukehorvat, @rimian, @andidev, @dotDeeka
+@alexeygolev, @sabudaye, @ojacquemart, @lukehorvat, @rimian, @andidev, @dotDeeka, @LoicMahieu
