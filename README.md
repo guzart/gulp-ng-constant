@@ -153,6 +153,16 @@ This property extends the one defined in the input `json` file. If there are
 properties with the same name, this properties will override the ones from the
 input `json` file.
 
+#### options.merge
+
+Type: `boolean`  
+Default: `false`  
+_optional_  
+
+This applies to constants of the Object type. 
+If true the constants of type Object from the input file and the constants
+from the configuration will be merged.
+
 #### options.deps
 
 Type: `array<string>|boolean`  

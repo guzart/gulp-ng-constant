@@ -141,6 +141,17 @@ describe('ngConstant.getConstants', function () {
     result = ngConstant.getConstants(data, { space: ' ' });
     expect(result[0].value).toEqual('{\n "foo": "bar"\n}');
   });
+
+  it('merges the data.constants with the options.constants', function () {
+    var data = { constants: { message: 'hello', user: { firstName: 'andrew' }  } };
+    var opts = { merge: true, constants: { message: 'foo', user: { lastName: 'smith' } } };
+    var result = ngConstant.getConstants(data, opts);
+    var messageConstant = result[0];
+    expect(messageConstant).toEqual({ name: 'message', value: '"foo"' });
+    var userValue = result[1].value;
+    expect(userValue).toContain('"firstName":"andrew"');
+    expect(userValue).toContain('"lastName":"smith"');
+  });
 });
 
 describe('ngConstant.getFilePath', function() {

@@ -16,6 +16,7 @@ var defaultWrapper, amdWrapper, commonjsWrapper;
 
 var defaults = {
   space: '\t',
+  merge: false,
   deps: null,
   stream: false,
   wrap: false,
@@ -94,7 +95,8 @@ function getConstants(data, options) {
   }
 
   var dataCnst = data.constants || data;
-  var input = _.extend({}, dataCnst, opts.constants);
+  var method = opts.merge ? 'merge' : 'extend';
+  var input = _[method]({}, dataCnst, opts.constants);
   var constants =  _.map(input, function (value, name) {
     return {
       name: name,
