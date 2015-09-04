@@ -155,7 +155,7 @@ describe('ngConstant.getFilePath', function() {
 
 function getStream(fileOptions) {
     var defaults = {path: 'constants.json'};
-    var file = new gutil.File(_.merge(defaults, fileOptions));
+    var file = new gutil.File(_.extend(defaults, fileOptions));
     var stream = through.obj(gutil.noop());
     stream.end(file);
     return stream;
