@@ -30,6 +30,19 @@ describe('ngConstant', function () {
                 done();
             });
         });
+
+        it ('extends the constants from a JSON file with the ones defined in the config', function (done) {
+            var contents = '{ "lastName": "Gomez", "message": "message from JSON" }';
+            getStream({path: 'constants.json', contents: new Buffer(contents)})
+            .pipe(ngConstant({constants: {message: "message from config", greet: "hello"}}))
+            .on('data', function (file) {
+                var output = file.contents.toString();
+                expect(output).toContain('constant("lastName", "Gomez")');
+                expect(output).not.toContain('message from JSON');
+                expect(output).toContain('constant("greet", "hello")');
+                done();
+            });
+        });
     });
 
     describe('name', function () {
