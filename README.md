@@ -27,7 +27,6 @@ Based of <a href="https://github.com/werk85/grunt-ng-constant">grunt-ng-constant
   * [Configuration in config.json](#configuration-in-configjson)
 1. [Options](#options)
   * [name](#optionsname)
-  * [~~dest~~](#optionsdest)
   * [stream](#optionsstream)
   * [constants](#optionsconstants)
   * [deps](#optionsdeps)
@@ -132,15 +131,6 @@ _optional_
 
 The module name.
 This property will override any `name` property defined in the input `json` file. The default name when used as a tranform stream (i.e. regular plugin) is the passed file name. When [options.stream](#optionsstream) is `true` the default name is `"ngConstants"`.
-
-#### ~~options.dest~~
-
-~~Type: `string`~~  
-~~Default: `undefined`~~  
-_optional_
-
-~~The path where the generated constant module should be saved.~~  
-**DEPRECATED**: To change the vinyl file name use a plugin such as [gulp-rename](https://www.npmjs.com/package/gulp-rename).
 
 #### options.stream
 
