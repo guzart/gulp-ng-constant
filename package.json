@@ -23,10 +23,10 @@
     "test": "node_modules/jasmine-node/bin/jasmine-node spec/gulpNgConstantSpec.js"
   },
   "dependencies": {
-    "gulp-util": "^2.2.14",
+    "gulp-util": "^3.0.6",
     "js-yaml": "^3.2.7",
     "lodash": "^3.9.3",
-    "through2": "^0.4.1"
+    "through2": "^2.0.0"
   },
   "devDependencies": {
     "jasmine-node": "^1.14.5"
