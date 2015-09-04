@@ -1,6 +1,6 @@
 {
   "name": "gulp-ng-constant",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "Gulp plugin for dynamic generation of angular constant modules.",
   "main": "index.js",
   "repository": {
