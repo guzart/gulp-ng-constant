@@ -144,12 +144,8 @@ describe('ngConstant.getConstants', function () {
 });
 
 describe('ngConstant.getFilePath', function() {
-  it('returns the file path from the src plugin when option dest is undefined', function() {
+  it('returns the file path from the src plugin with the .js extension', function() {
     expect(ngConstant.getFilePath('/foo/bar/config.json', {})).toBe('/foo/bar/config.js');
-  });
-
-  it('returns the file path defined by the dest option', function() {
-    expect(ngConstant.getFilePath('/foo/bar/foo.js', { dest: 'foo.js' })).toBe('/foo/bar/foo.js');
   });
 });
 

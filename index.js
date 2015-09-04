@@ -57,7 +57,7 @@ function ngConstantPlugin(opts) {
       if (!options.wrap) { options.wrap = data.wrap; }
       result = wrap(result, options);
 
-      file.path = getFilePath(file.path, options);
+      file.path = getFilePath(file.path);
       file.contents = new Buffer(result);
       _this.push(file);
     } catch (err) {
@@ -105,7 +105,7 @@ function getConstants(data, options) {
   return constants;
 }
 
-function getFilePath(filePath, options) {
+function getFilePath(filePath) {
   return gutil.replaceExtension(filePath, '.js');
 }
 
