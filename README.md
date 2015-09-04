@@ -25,7 +25,7 @@ Based of <a href="https://github.com/werk85/grunt-ng-constant">grunt-ng-constant
 1. [Usage](#usage)
   * [Configuration in gulpfile.js](#configuration-in-gulpfilejs)
   * [Configuration in config.json](#configuration-in-configjson)
-1. [Options](#options)
+2. [Options](#options)
   * [name](#optionsname)
   * [stream](#optionsstream)
   * [constants](#optionsconstants)
@@ -34,11 +34,11 @@ Based of <a href="https://github.com/werk85/grunt-ng-constant">grunt-ng-constant
   * [space](#optionsspace)
   * [template](#optionstemplate)
   * [templatePath](#optionstemplatepath)
-1. [Examples](#examples)
+3. [Examples](#examples)
   * [Multiple Environments](#multiple-environments)
   * [Stream](#stream)
   * [YAML](#yaml)
-1. [Special Thanks](#special-thanks)
+4. [Special Thanks](#special-thanks)
 
 ## Usage
 
