@@ -13,7 +13,7 @@ describe('ngConstant', function () {
     describe('file stream', function () {
         it('load the constants from a YAML file', function (done) {
             var contents = 'message: happy yaml';
-            getStream({path: 'constants.yml', contents: new Buffer(contents)})
+            getStream({contents: new Buffer(contents)})
             .pipe(ngConstant())
             .on('data', function (file) {
                 expect(file.contents.toString()).toContain('constant("message", "happy yaml")');
@@ -23,7 +23,7 @@ describe('ngConstant', function () {
 
         it ('loads the constants from a JSON file', function (done) {
             var contents = '{ "message": "valid JSON" }';
-            getStream({path: 'constants.json', contents: new Buffer(contents)})
+            getStream({contents: new Buffer(contents)})
             .pipe(ngConstant())
             .on('data', function (file) {
                 expect(file.contents.toString()).toContain('constant("message", "valid JSON")');
@@ -33,7 +33,7 @@ describe('ngConstant', function () {
 
         it ('extends the constants from a JSON file with the ones defined in the config', function (done) {
             var contents = '{ "lastName": "Gomez", "message": "message from JSON" }';
-            getStream({path: 'constants.json', contents: new Buffer(contents)})
+            getStream({contents: new Buffer(contents)})
             .pipe(ngConstant({constants: {message: "message from config", greet: "hello"}}))
             .on('data', function (file) {
                 var output = file.contents.toString();
