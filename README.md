@@ -1,7 +1,12 @@
 gulp-ng-constant
 ================
 
+[![License](http://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://npmjs.org/package/gulp-ng-constant)
+[![NPM version](http://img.shields.io/npm/dm/gulp-ng-constant.svg?style=flat)](https://npmjs.org/package/gulp-ng-constant)
+[![NPM version](http://img.shields.io/npm/v/gulp-ng-constant.svg?style=flat)](https://npmjs.org/package/gulp-ng-constant)  
 [![Build Status](https://travis-ci.org/guzart/gulp-ng-constant.svg)](https://travis-ci.org/guzart/gulp-ng-constant)
+[![Code Climate](https://codeclimate.com/github/guzart/gulp-ng-constant/badges/gpa.svg)](https://codeclimate.com/github/guzart/gulp-ng-constant)
+[![Dependency Status](https://gemnasium.com/guzart/gulp-ng-constant.svg)](https://gemnasium.com/guzart/gulp-ng-constant)
 
 ## Information
 
