@@ -29,6 +29,7 @@ Based of <a href="https://github.com/werk85/grunt-ng-constant">grunt-ng-constant
   * [name](#optionsname)
   * [stream](#optionsstream)
   * [constants](#optionsconstants)
+  * [merge](#optionsmerge)
   * [deps](#optionsdeps)
   * [wrap](#optionswrap)
   * [space](#optionsspace)
@@ -159,7 +160,7 @@ Type: `boolean`
 Default: `false`  
 _optional_  
 
-This applies to constants of the Object type. 
+This applies to constants of the Object type.
 If true the constants of type Object from the input file and the constants
 from the configuration will be merged.
 
