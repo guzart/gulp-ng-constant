@@ -329,7 +329,7 @@ gulp.task('constants', function () {
       name: "app.env",
       constants: envConfig,
       stream: true,
-      wrap: "es6",
+      wrap: "es6"
     })
     .pipe(rename('env.js'))
     .pipe(gulp.dest('dist'));
@@ -351,7 +351,7 @@ let app = angular.module('app', [env.name])
     });
 
 
-export default repositoriesModule;
+export default app;
 
 ```
 
