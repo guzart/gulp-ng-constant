@@ -303,13 +303,13 @@ _**envs.json**_
 {
   "development": { 
     "ENV": {
-        "KEY": "secret"
+        "KEY": "secret",
         "API_URL": "http://localhost/"
     } 
   },
   "production": {
     "ENV": {
-        "KEY": "superSecret"
+        "KEY": "superSecret",
         "API_URL": "http://example.com/"
     }
   }
@@ -326,7 +326,7 @@ gulp.task('constants', function () {
   var myConfig = require('./envs.json');
   var envConfig = myConfig[process.env];
   return ngConstant({
-      name: "app.env"
+      name: "app.env",
       constants: envConfig,
       stream: true,
       wrap: "es6",
