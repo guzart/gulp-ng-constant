@@ -296,6 +296,65 @@ gulp.task('constants', function () {
 });
 ```
 
+### ECMAScript 2015 (ES6)
+
+_**envs.json**_
+```json
+{
+  "development": { 
+    "ENV": {
+        "KEY": "secret"
+        "API_URL": "http://localhost/"
+    } 
+  },
+  "production": {
+    "ENV": {
+        "KEY": "superSecret"
+        "API_URL": "http://example.com/"
+    }
+  }
+}
+```
+
+_**gulpfile.babel.js**_
+```javascript
+import gulp     from 'gulp';
+import rename   from 'gulp-rename';
+import ngConstant from 'gulp-ng-constant';
+
+gulp.task('constants', function () {
+  var myConfig = require('./envs.json');
+  var envConfig = myConfig[process.env];
+  return ngConstant({
+      name: "app.env"
+      constants: envConfig,
+      stream: true,
+      wrap: "es6",
+    })
+    .pipe(rename('env.js'))
+    .pipe(gulp.dest('dist'));
+});
+
+```
+
+_**app.js**_
+```javascript
+'use strict';
+
+import angular from 'angular';
+import env from 'env';
+
+let app = angular.module('app', [env.name])
+    .factory('someRepository', function($http, ENV) {
+        //Just to illustrate
+        $http.get(ENV.API_URL);
+    });
+
+
+export default repositoriesModule;
+
+```
+
 ## Special Thanks
 
 @alexeygolev, @sabudaye, @ojacquemart, @lukehorvat, @rimian, @andidev, @dotDeeka, @LoicMahieu, @vladimirgamalian
