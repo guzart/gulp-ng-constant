@@ -183,7 +183,7 @@ This property will override any `deps` property defined in the input `json` file
 
 Type: `boolean|string`  
 Default: `false`  
-Available: `['amd', 'commonjs']`  
+Available: `['amd', 'commonjs', 'es6']`  
 _optional_
 
 A boolean to active or deactive the automatic wrapping.
