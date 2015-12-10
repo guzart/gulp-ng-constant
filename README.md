@@ -44,6 +44,7 @@ Based of <a href="https://github.com/werk85/grunt-ng-constant">grunt-ng-constant
   * [Multiple Environments](#multiple-environments)
   * [Stream](#stream)
   * [YAML](#yaml)
+  * [ECMAScript 2015 (ES6)](#es6)
 4. [Special Thanks](#special-thanks)
 
 ## Usage
