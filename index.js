@@ -12,7 +12,8 @@ var TEMPLATE_PATH = path.join(__dirname, 'tpls', 'constant.tpl.ejs');
 var DEFAULT_WRAP_PATH = path.join(__dirname, 'tpls', 'default-wrapper.tpl.ejs');
 var AMD_WRAP_PATH = path.join(__dirname, 'tpls', 'amd-wrapper.tpl.ejs');
 var COMMONJS_WRAP_PATH = path.join(__dirname, 'tpls', 'commonjs-wrapper.tpl.ejs');
-var defaultWrapper, amdWrapper, commonjsWrapper;
+var ES6_WRAP_PATH = path.join(__dirname, 'tpls', 'es6-wrapper.tpl.ejs');
+var defaultWrapper, amdWrapper, commonjsWrapper, es6Wrapper;
 
 var defaults = {
   space: '\t',
@@ -126,6 +127,9 @@ function wrap(input, options) {
   } else if (wrapper === 'commonjs') {
     if (!commonjsWrapper) { commonjsWrapper = readFile(COMMONJS_WRAP_PATH); }
     wrapper = commonjsWrapper;
+  } else if (wrapper === 'es6') {
+    if (!es6Wrapper) { es6Wrapper = readFile(ES6_WRAP_PATH); }
+    wrapper = es6Wrapper;
   }
   return _.template(wrapper)(_.merge({ '__ngModule': input }, options));
 }
