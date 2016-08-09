@@ -155,7 +155,7 @@ If true it returns a new gulp stream, which can then be piped other gulp plugins
 
 Type: `Object | string`  
 Default: `undefined`  
-Exends/Overrides: `json.constants`  
+Extends/Overrides: `json.constants`  
 
 Constants to defined in the module.
 Can be a `JSON` string or an `Object`.
