@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "scripts": {
+    "start": "node_modules/gulp/bin/gulp.js config"
+  },
+  "dependencies": {
+    "gulp": "^3.9.1"
+  }
+}
