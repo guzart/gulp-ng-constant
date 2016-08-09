@@ -8,11 +8,7 @@ gulp.task('config', function () {
       deps: ['ngAnimate'],
       constants: { myPropCnt: 'hola!' },
       indent: '  ',
-      space: null,
-      wrap: 'commonjs',
-      wrapHeader: '(function () {\n\'use strict\';\n',
-      wrapFooter: '}())'
+      wrap: 'es6'
     }))
-    // Writes config.js to dist/ folder
     .pipe(gulp.dest('.'));
 });
