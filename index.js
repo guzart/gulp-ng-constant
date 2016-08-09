@@ -16,11 +16,11 @@ var ES6_WRAP_PATH = path.join(__dirname, 'tpls', 'es6-wrapper.tpl.ejs');
 var defaultWrapper, amdWrapper, commonjsWrapper, es6Wrapper;
 
 var defaults = {
-  space: '\t',
+  space: null,
   merge: false,
   deps: null,
   stream: false,
-  wrap: false,
+  wrap: 'es6',
   indent: '',
   template: undefined,
   templatePath: TEMPLATE_PATH

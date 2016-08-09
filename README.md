@@ -186,8 +186,8 @@ This property will override any `deps` property defined in the input `json` file
 #### options.wrap
 
 Type: `boolean|string`  
-Default: `false`  
-Available: `['amd', 'commonjs', 'es6']`  
+Default: `'es6'`  
+Available: `[false, 'amd', 'commonjs', 'es6']`  
 _optional_
 
 A boolean to active or deactive the automatic wrapping.
@@ -216,10 +216,10 @@ A string that is appended to the wrapper.
 #### options.space
 
 Type: `string`  
-Default: `'\t'`  
+Default: `null`  
 _optional_
 
-A string that defines how the JSON.stringify method will prettify your code.
+A string that defines how the JSON.stringify method will prettify your code, e.g. `'\t'`, `' '`
 
 #### options.template
 
