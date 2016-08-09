@@ -133,7 +133,9 @@ function wrap(input, options) {
     if (!es6Wrapper) { es6Wrapper = readFile(ES6_WRAP_PATH); }
     wrapper = es6Wrapper;
   }
-  return _.template(wrapper)(_.merge({ '__ngModule': input }, options));
+
+  var locals = _.merge({ '__ngModule': input }, options);
+  return _.template(wrapper)(locals);
 }
 
 function readFile(filepath) {
