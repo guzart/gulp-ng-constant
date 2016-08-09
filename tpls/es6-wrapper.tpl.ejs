@@ -1,5 +1,7 @@
+<% if (wrapHeader) { %>${wrapHeader}${'\n'}<% } %>
 import angular from 'angular';
 
 const env = <%= __ngModule %>
 
 export default env;
+<% if (wrapFooter) { %>${'\n'}${wrapFooter}<% } %>

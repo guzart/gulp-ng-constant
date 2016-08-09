@@ -40,6 +40,8 @@ Based of <a href="https://github.com/werk85/grunt-ng-constant">grunt-ng-constant
   * [space](#optionsspace)
   * [template](#optionstemplate)
   * [templatePath](#optionstemplatepath)
+  * [wrapHeader](#optionswrapheader)
+  * [wrapFooter](#optionswrapfooter)
   * [indent](#optionsindent)
 3. [Examples](#examples)
   * [Multiple Environments](#multiple-environments)
@@ -224,6 +226,22 @@ Default: `'tpls/constant.tpl.ejs'`
 _optional_
 
 Location of a custom template file for creating the output configuration file. Defaults to the provided constants template file if none provided.
+
+#### options.wrapHeader
+
+Type: `string`  
+Default: `null`  
+_optional_
+
+A string that is prepended to the wrapper.
+
+#### options.wrapFooter
+
+Type: `string`  
+Default: `null`  
+_optional_
+
+A string that is appended to the wrapper.
 
 #### options.indent
 

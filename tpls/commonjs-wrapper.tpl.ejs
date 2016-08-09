@@ -1,2 +1,3 @@
-
+<% if (wrapHeader) { %>${wrapHeader}${'\n'}<% } %>
 module.exports = <%= __ngModule %>
+<% if (wrapFooter) { %>${'\n'}${wrapFooter}<% } %>
