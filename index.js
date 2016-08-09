@@ -21,6 +21,8 @@ var defaults = {
   deps: null,
   stream: false,
   wrap: 'es6',
+  wrapHeader: null,
+  wrapFooter: null,
   indent: '',
   template: undefined,
   templatePath: TEMPLATE_PATH
