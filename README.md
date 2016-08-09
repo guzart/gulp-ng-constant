@@ -40,6 +40,7 @@ Based of <a href="https://github.com/werk85/grunt-ng-constant">grunt-ng-constant
   * [space](#optionsspace)
   * [template](#optionstemplate)
   * [templatePath](#optionstemplatepath)
+  * [indent](#optionsindent)
 3. [Examples](#examples)
   * [Multiple Environments](#multiple-environments)
   * [Stream](#stream)
@@ -224,6 +225,15 @@ _optional_
 
 Location of a custom template file for creating the output configuration file. Defaults to the provided constants template file if none provided.
 
+#### options.indent
+
+Type: `string`  
+Default: `''` (empty string)  
+_optional_
+
+A string that is used to indent the `.constant()` lines in the generated file. Useful only for
+formatting the output file.
+
 ## Examples
 
 ### Multiple Environments
@@ -302,11 +312,11 @@ gulp.task('constants', function () {
 _**envs.json**_
 ```json
 {
-  "development": { 
+  "development": {
     "ENV": {
         "KEY": "secret",
         "API_URL": "http://localhost/"
-    } 
+    }
   },
   "production": {
     "ENV": {

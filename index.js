@@ -21,6 +21,7 @@ var defaults = {
   deps: null,
   stream: false,
   wrap: false,
+  indent: '',
   template: undefined,
   templatePath: TEMPLATE_PATH
 };
@@ -52,7 +53,8 @@ function ngConstantPlugin(opts) {
       var result = _.template(template)({
         moduleName: getModuleName(data, options, file),
         deps:       getModuleDeps(data, options),
-        constants:  getConstants(data, options)
+        constants:  getConstants(data, options),
+        indent:     options.indent
       });
 
       // Handle wrapping
