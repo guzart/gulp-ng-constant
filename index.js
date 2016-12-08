@@ -35,7 +35,7 @@ function ngConstantPlugin(opts) {
   var stream = through.obj(objectStream);
 
   if (options.stream) {
-    stream.end(new gutil.File({ path: 'ngConstants.json' }));
+    stream.end(new gutil.File({ path: (opts.name || 'ngConstants') + '.json' }));
   }
 
   return stream;
