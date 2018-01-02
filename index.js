@@ -3,7 +3,9 @@
 var fs = require('fs');
 var yaml = require('js-yaml');
 var path = require('path');
-var gutil = require('gulp-util');
+var Vinyl = require('vinyl');
+var PluginError = require('plugin-error');
+var replaceExtension = require('replace-ext');
 var through = require('through2');
 
 var _ = require('lodash');
@@ -35,7 +37,7 @@ function ngConstantPlugin(opts) {
   var stream = through.obj(objectStream);
 
   if (options.stream) {
-    stream.end(new gutil.File({ path: (opts.name || 'ngConstants') + '.json' }));
+    stream.end(new Vinyl({ path: (opts.name || 'ngConstants') + '.json' }));
   }
 
   return stream;
@@ -113,11 +115,11 @@ function getConstants(data, options) {
 }
 
 function getFilePath(filePath) {
-  return gutil.replaceExtension(filePath, '.js');
+  return replaceExtension(filePath, '.js');
 }
 
 function pluginError(msg) {
-  return new gutil.PluginError('gulp-tslint-log', msg);
+  return new PluginError('gulp-tslint-log', msg);
 }
 
 function wrap(input, options) {
