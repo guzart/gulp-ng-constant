@@ -2,7 +2,7 @@
 
 var ngConstant = require('../index');
 var _ = require('lodash');
-var gutil = require('gulp-util');
+var Vinyl = require('vinyl');
 var through = require('through2');
 
 // TODO: add custom matcher to test the modules name expect(output).toHaveModule('ngConstants') that uses regexp
@@ -162,8 +162,8 @@ describe('ngConstant.getFilePath', function() {
 
 function getStream(fileOptions) {
   var defaults = {path: 'constants.json'};
-  var file = new gutil.File(_.extend(defaults, fileOptions));
-  var stream = through.obj(gutil.noop());
+  var file = new Vinyl(_.extend(defaults, fileOptions));
+  var stream = through.obj(through.obj());
   stream.end(file);
   return stream;
 }
